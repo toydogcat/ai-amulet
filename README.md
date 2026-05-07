@@ -2,7 +2,7 @@
 
 本專案是一個專為展示極度狹長（高長寬比）道教符咒而設計的**賽博修仙風 (Tech-Daoist / Cyberpunk)** 網頁終端。將古老的符咒視為「對宇宙下達的 Command Line」或「系統補丁 (System Patch)」，並完美融合了現代終端機介面。
 
-![終端介面預覽](.system_generated/click_feedback/click_feedback_1778131210741.png)
+![符咒](https://toydogcat.github.io/ai-amulet/)
 
 ## 🌌 核心特色與技術亮點
 

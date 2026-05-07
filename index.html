@@ -29,6 +29,8 @@
             </div>
             <div class="header-center">
                 <div class="spiritual-telemetry">
+                    <span id="busuanzi_container_site_pv" style="display:none">ASTRAL_PV: <span id="busuanzi_value_site_pv" style="color:var(--neon-amber)"></span> <span class="telemetry-divider">|</span></span>
+                    <span id="busuanzi_container_site_uv" style="display:none">SOULS_UV: <span id="busuanzi_value_site_uv" style="color:var(--neon-green)"></span> <span class="telemetry-divider">|</span></span>
                     <span>SPIRITUAL_FREQ: <span id="telemetry-freq">104.82 THz</span></span>
                     <span class="telemetry-divider">|</span>
                     <span>SOUL_BANDWIDTH: <span id="telemetry-bw">92.4%</span></span>
@@ -182,6 +184,44 @@
         </main>
     </div>
 
+    <!-- Deep Scan Fullscreen Modal -->
+    <div id="scanner-modal" class="modal-overlay">
+        <div class="modal-close-btn" id="modal-close">✖ CLOSE_SCAN [ESC]</div>
+        <div class="modal-container-box">
+            <div class="modal-sidebar modal-left">
+                <div class="modal-tag">[SCAN_ENGAGED]</div>
+                <div class="modal-stats">
+                    <p>ANALYSIS: <span style="color:var(--neon-green)">ENGAGED</span></p>
+                    <p>RESOLUTION: <span style="color:var(--neon-amber)">OPTIMAL</span></p>
+                    <p>REIKI_FREQ: <span id="modal-reiki-freq" style="color:var(--neon-blue)">998.4 THz</span></p>
+                </div>
+                <div class="modal-scrambler" id="modal-log-feed">
+                    <div class="log-line">[SYS] LAUNCHING DEEP_SCAN_LENS...</div>
+                    <div class="log-line">[SYS] ANALYZING RUNIC VECTORS...</div>
+                    <div class="log-line">[SYS] RENDERING COGNITIVE DETAILS...</div>
+                </div>
+            </div>
+            
+            <div class="modal-viewer">
+                <div class="modal-laser-scanner"></div>
+                <div class="modal-img-container" id="modal-img-wrapper">
+                    <!-- Image or Canvas copy injected here -->
+                </div>
+            </div>
+            
+            <div class="modal-sidebar modal-right">
+                <div class="modal-tag">[META_DECRYPTED]</div>
+                <h3 id="modal-talisman-name" style="color:var(--neon-amber); margin-bottom:15px; font-family:var(--font-display); font-size:1.1rem; line-height:1.4;">TALISMAN_NAME</h3>
+                <div class="modal-description" id="modal-talisman-desc" style="font-size:0.85rem; line-height:1.6; color:var(--text-secondary); margin-bottom: 20px;">
+                    Description text...
+                </div>
+                <div class="modal-drag-tip">↕ 滑動滑鼠滾輪或上下滾動以檢視完整細節 ↕</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Busuanzi Visitor Counter -->
+    <script async src="https://busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
     <script src="app.js"></script>
 </body>
 </html>

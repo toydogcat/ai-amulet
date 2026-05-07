@@ -355,7 +355,14 @@ function renderDeck(filter = "all") {
             drawProceduralTalisman(canvas, card.category);
         }
 
-        // Click Handler
+        // Click Image Container to trigger DEEP FULLSCREEN SCAN
+        cardEl.querySelector('.talisman-img-container').addEventListener('click', (e) => {
+            e.stopPropagation(); // Avoid triggering standard card select click
+            synth.playClick();
+            openDeepScanModal(card);
+        });
+
+        // Click Card Body to select/compile
         cardEl.addEventListener('click', () => {
             synth.playClick();
             document.querySelectorAll('.talisman-card-element').forEach(el => el.classList.remove('active-card'));
@@ -363,6 +370,80 @@ function renderDeck(filter = "all") {
             compileTalisman(card);
         });
     });
+}
+
+// Fullscreen Deep Scan Modal controller
+let activeModalTimeout = null;
+
+function openDeepScanModal(card) {
+    const modal = document.getElementById('scanner-modal');
+    const wrapper = document.getElementById('modal-img-wrapper');
+    const nameEl = document.getElementById('modal-talisman-name');
+    const descEl = document.getElementById('modal-talisman-desc');
+    const freqEl = document.getElementById('modal-reiki-freq');
+    const logFeed = document.getElementById('modal-log-feed');
+
+    nameEl.textContent = card.name.toUpperCase();
+    descEl.textContent = card.description;
+    freqEl.textContent = card.freq;
+
+    // Clear previous view
+    wrapper.innerHTML = "";
+
+    // Load full-screen copy
+    if (card.image) {
+        const img = document.createElement('img');
+        img.className = 'modal-image-zoomed';
+        img.src = card.image;
+        wrapper.appendChild(img);
+    } else {
+        const canvas = document.createElement('canvas');
+        canvas.className = 'modal-canvas-zoomed';
+        wrapper.appendChild(canvas);
+        drawProceduralTalisman(canvas, card.category);
+    }
+
+    // Activate modal overlay
+    modal.classList.add('active-modal');
+    synth.playCompileSuccess();
+
+    // Fill simulated typing scanner log feed
+    if (activeModalTimeout) clearTimeout(activeModalTimeout);
+    logFeed.innerHTML = "";
+    
+    const logs = [
+        `[SYS] ESTABLISHING DIRECT LINK... OK.`,
+        `[SYS] BINDING QUANTUM WAVE: ${card.freq}`,
+        `[SYS] PARSING GEOMETRY STRUCTURES...`,
+        `[SCAN] REIKI_DENSITY MATCH: 99.85%`,
+        `[SCAN] MAIN VECTOR (令): MATCHED`,
+        `[SCAN] SYMMETRY CORE: LOCKED`,
+        `[SCAN] ELEMENT FLOW COMPILING...`,
+        `[SUCCESS] METADATA EXPORTED COMPLETELY.`
+    ];
+
+    let current = 0;
+    function typeModalLog() {
+        if (current < logs.length && modal.classList.contains('active-modal')) {
+            const div = document.createElement('div');
+            div.className = 'log-line';
+            div.textContent = logs[current];
+            logFeed.appendChild(div);
+            logFeed.scrollTop = logFeed.scrollHeight;
+            current++;
+            activeModalTimeout = setTimeout(typeModalLog, 120 + Math.random() * 150);
+        }
+    }
+    typeModalLog();
+}
+
+function closeDeepScanModal() {
+    const modal = document.getElementById('scanner-modal');
+    if (modal.classList.contains('active-modal')) {
+        synth.playClick();
+        modal.classList.remove('active-modal');
+        if (activeModalTimeout) clearTimeout(activeModalTimeout);
+    }
 }
 
 function handleImageError(img, category) {
@@ -563,6 +644,26 @@ document.addEventListener('DOMContentLoaded', () => {
             const filter = btn.getAttribute('data-filter');
             renderDeck(filter);
         });
+    });
+
+    // Wire up Deep Scan Modal Close Events
+    const scannerModal = document.getElementById('scanner-modal');
+    const modalCloseBtn = document.getElementById('modal-close');
+
+    modalCloseBtn.addEventListener('click', closeDeepScanModal);
+
+    // Close modal on background click
+    scannerModal.addEventListener('click', (e) => {
+        if (e.target === scannerModal) {
+            closeDeepScanModal();
+        }
+    });
+
+    // Close modal on ESC key
+    window.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            closeDeepScanModal();
+        }
     });
 
     // Auto load first talisman compiled on start
