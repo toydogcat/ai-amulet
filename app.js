@@ -728,4 +728,11 @@ document.addEventListener('DOMContentLoaded', () => {
             compileTalisman(AMULETS_DATA[0]);
         }
     }, 500);
+
+    // Register PWA Service Worker for offline support
+    if ('serviceWorker' in navigator) {
+        navigator.serviceWorker.register('./sw.js')
+            .then(reg => console.log('[PWA] Spiritual Registry successfully loaded:', reg.scope))
+            .catch(err => console.log('[PWA] Registry registration failed:', err));
+    }
 });
