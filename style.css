@@ -887,3 +887,251 @@ body {
     }
 }
 
+/* ==========================================
+   CYBER-DAOIST SPATIAL MARKDOWN RENDERING
+   ========================================== */
+.modal-sidebar.modal-right {
+    overflow-y: auto !important;
+    height: calc(85vh - 40px);
+    max-height: calc(85vh - 40px);
+    padding-right: 12px; /* Give space for custom scrollbar */
+}
+
+/* Custom Scrollbar inside decrypted meta */
+.modal-sidebar.modal-right::-webkit-scrollbar {
+    width: 4px;
+}
+
+.modal-sidebar.modal-right::-webkit-scrollbar-track {
+    background: rgba(15, 16, 21, 0.5);
+}
+
+.modal-sidebar.modal-right::-webkit-scrollbar-thumb {
+    background: var(--neon-amber);
+    border-radius: 2px;
+}
+
+/* Headers inside spatial profiles */
+.cyber-h2 {
+    font-family: var(--font-display);
+    font-size: 0.95rem;
+    color: var(--neon-blue);
+    margin-top: 18px;
+    margin-bottom: 8px;
+    border-left: 2px solid var(--neon-blue);
+    padding-left: 8px;
+    text-shadow: 0 0 5px rgba(0, 240, 255, 0.3);
+    letter-spacing: 0.5px;
+}
+
+.cyber-h3 {
+    font-family: var(--font-sans);
+    font-size: 0.85rem;
+    color: var(--text-primary);
+    margin-top: 14px;
+    margin-bottom: 6px;
+    font-weight: bold;
+}
+
+.cyber-blockquote {
+    border-left: 2px solid var(--neon-green);
+    background: rgba(0, 255, 102, 0.03);
+    padding: 10px;
+    margin: 10px 0;
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--text-primary);
+    border-radius: 0 4px 4px 0;
+}
+
+.cyber-code {
+    background: #040507;
+    border: 1px solid rgba(255, 176, 0, 0.15);
+    border-radius: 4px;
+    padding: 10px;
+    font-family: var(--font-mono);
+    font-size: 0.72rem;
+    color: var(--neon-amber);
+    overflow-x: auto;
+    margin: 10px 0;
+    line-height: 1.4;
+}
+
+.cyber-bold {
+    color: var(--neon-amber);
+    font-weight: bold;
+}
+
+.cyber-list {
+    padding-left: 15px;
+    margin: 8px 0;
+}
+
+.cyber-list li {
+    font-size: 0.8rem;
+    color: var(--text-secondary);
+    margin-bottom: 4px;
+    list-style-type: square;
+}
+
+.cyber-hr {
+    border: none;
+    border-top: 1px dashed rgba(255, 255, 255, 0.08);
+    margin: 15px 0;
+}
+
+/* Beautiful Neon Tables */
+.cyber-table-container {
+    width: 100%;
+    overflow-x: auto;
+    margin: 12px 0;
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    background: rgba(8, 9, 12, 0.8);
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+}
+
+.cyber-table-container::-webkit-scrollbar {
+    height: 4px;
+}
+
+.cyber-table-container::-webkit-scrollbar-thumb {
+    background: var(--border-color);
+    border-radius: 2px;
+}
+
+.cyber-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.72rem;
+    text-align: left;
+}
+
+.cyber-table th, .cyber-table td {
+    padding: 6px 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    white-space: nowrap;
+}
+
+.cyber-table th {
+    background: rgba(22, 24, 34, 0.95);
+    color: var(--neon-amber);
+    font-family: var(--font-mono);
+    font-weight: bold;
+    border-bottom: 1px solid var(--border-color);
+}
+
+.cyber-table tbody tr:hover {
+    background: rgba(255, 255, 255, 0.02);
+}
+
+.active-tag {
+    color: var(--neon-green);
+    font-weight: bold;
+    background: rgba(0, 255, 102, 0.12);
+    padding: 1px 4px;
+    border-radius: 3px;
+    text-shadow: var(--glow-green);
+    border: 1px solid rgba(0, 255, 102, 0.2);
+}
+
+/* Interactive Details Section inside decrypted meta */
+.cyber-details {
+    border: 1px solid rgba(0, 240, 255, 0.15);
+    border-radius: 4px;
+    background: rgba(0, 240, 255, 0.01);
+    margin: 15px 0;
+    padding: 4px;
+    transition: all 0.3s;
+}
+
+.cyber-details[open] {
+    border-color: var(--neon-blue);
+    box-shadow: inset 0 0 5px rgba(0, 240, 255, 0.1), 0 0 10px rgba(0, 240, 255, 0.15);
+}
+
+.cyber-summary {
+    font-family: var(--font-mono);
+    font-size: 0.78rem;
+    color: var(--neon-blue);
+    padding: 6px;
+    cursor: pointer;
+    user-select: none;
+    outline: none;
+    font-weight: bold;
+}
+
+.cyber-summary:hover {
+    color: #fff;
+    text-shadow: 0 0 5px var(--neon-blue);
+}
+
+/* Radar Chart Styling */
+.radar-chart-container {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 15px 0;
+    background: rgba(4, 5, 7, 0.45);
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    margin: 14px 0;
+    box-shadow: inset 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.cyber-radar-canvas {
+    max-width: 100%;
+    height: auto;
+}
+
+/* Element Progress Bars Style */
+.element-progress-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 15px 0;
+    padding: 12px;
+    background: rgba(8, 9, 12, 0.45);
+    border-radius: 4px;
+    border: 1px solid rgba(255, 255, 255, 0.04);
+}
+
+.element-progress-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+}
+
+.element-label {
+    font-family: var(--font-sans);
+    font-size: 0.8rem;
+    color: var(--text-primary);
+    width: 48px;
+    white-space: nowrap;
+}
+
+.element-progress-bar-bg {
+    flex-grow: 1;
+    height: 6px;
+    background: rgba(255, 255, 255, 0.05);
+    border-radius: 3px;
+    overflow: hidden;
+    position: relative;
+}
+
+.element-progress-bar-fill {
+    height: 100%;
+    border-radius: 3px;
+    transition: width 1s cubic-bezier(0.1, 0.8, 0.2, 1);
+}
+
+.element-value {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-align: right;
+    width: 35px;
+}
+
