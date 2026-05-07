@@ -59,6 +59,48 @@ const AMULETS_DATA = [
         description: "整合「財氣凝聚」與「八字五行平衡」的高階運勢補丁。特別針對日元丁火提供源源不絕的木火生扶，同時打通申辰與卯戌的生財管道。本天尊親筆調校招財符頭與五方財神能量吸引渦流，全天候動態優化宿主的財務波動特徵，實現金光財庫大開與靈力吞吐。"
     },
     {
+        id: "AMULET_PIANOFORTE_SOUL",
+        name: "Pianoforte 心神和弦淨化補丁",
+        category: "cache",
+        target: "思維清理・心神和諧・多維聲頻修持",
+        efficacy: "EXCLUSIVE-CLASS (玄水特級)",
+        freq: "1224.32 THz",
+        date: "2026-05-08",
+        hash: "0x0888_PIANO_FORTE_SOUL",
+        image: "assets/amulet/pianoforte.webp",
+        markdownPath: "assets/markdown/pianoforte.md",
+        elements: { metal: 21, wood: 14, water: 37, fire: 5, earth: 24 },
+        description: "調用天籟玄水聲頻算法，將宿主身心頻率微調至 1224.32 THz 的黃金和弦區間。對於水旺身強之癸水日主，本補丁能完美引導龐大的思維洪流轉化為創造性的音樂與文字律動，清理大腦記憶體垃圾線程，恢復清澈空靈的心境。"
+    },
+    {
+        id: "AMULET_SAKURA_LOVE",
+        name: "Sakura 櫻舞春風桃花補丁",
+        category: "flow",
+        target: "人緣增幅・貴人相合・情感氣場優化",
+        efficacy: "DIVINE-CLASS (桃夭特級)",
+        freq: "1314.20 THz",
+        date: "2026-05-08",
+        hash: "0x5200_SAKURA_LOVE_PASS",
+        image: "assets/amulet/sakura.webp",
+        markdownPath: "assets/markdown/sakura.md",
+        elements: { metal: 19, wood: 5, water: 19, fire: 34, earth: 24 },
+        description: "載入太真西王母「桃花灼灼」演算法。針對丁火日主進行高頻情感波段微調，活化原局多重情感交互介面（Interactive Port）。在宿主周身形成粉櫻流光的溫和斥力屏障，主動過濾爛桃花等惡意訊號，吸引高品質貴人磁場。"
+    },
+    {
+        id: "AMULET_ZHIJIE_FIREWALL",
+        name: "Zhijie 破軍金剛禦魔護甲補丁",
+        category: "firewall",
+        target: "強大防護・食神制殺・驅邪避邪・抵禦精神干擾",
+        efficacy: "LEGEND-LEVEL (青帝特級)",
+        freq: "1777.77 THz",
+        date: "2026-05-08",
+        hash: "0x7777_ZHIJIE_FIREWALL",
+        image: "assets/amulet/Zhijie.webp",
+        markdownPath: "assets/markdown/Zhijie.md",
+        elements: { metal: 37, wood: 9, water: 5, fire: 24, earth: 26 },
+        description: "調用天將破軍、太乙金剛之不壞密碼。針對金重身輕之甲木日主，啟用強大的食神制殺和傷官生財自我平衡協定。在日主外部編譯出一層由 1777.77 THz 疊加的高能電磁金剛護甲，主動將一切外界不友善的敵意、壓力或惡意代碼全數反彈，並在動態中吸納外力淬鍊元神。"
+    },
+    {
         id: "AMULET_WIND_DRAGON_STORM",
         name: "WindDragon 風雷御風乘龍吞吐天線",
         category: "firewall",
