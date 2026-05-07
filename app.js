@@ -59,6 +59,20 @@ const AMULETS_DATA = [
         description: "整合「財氣凝聚」與「八字五行平衡」的高階運勢補丁。特別針對日元丁火提供源源不絕的木火生扶，同時打通申辰與卯戌的生財管道。本天尊親筆調校招財符頭與五方財神能量吸引渦流，全天候動態優化宿主的財務波動特徵，實現金光財庫大開與靈力吞吐。"
     },
     {
+        id: "AMULET_KYLERICH_FLOW",
+        name: "KyleRich 金光吞吐財源補丁",
+        category: "flow",
+        target: "金水相生・食神生財・招財進寶・經商開拓",
+        efficacy: "EXCLUSIVE-CLASS (金光特級)",
+        freq: "1688.88 THz",
+        date: "2026-05-08",
+        hash: "0x1688_KYLE_RICH_CORE",
+        image: "assets/amulet/kylerich.webp",
+        markdownPath: "assets/markdown/kylerich.md",
+        elements: { metal: 17, wood: 9, water: 35, fire: 18, earth: 21 },
+        description: "載入「金光真君財庫吞吐」核心演算法。特別針對辛金日主之金水傷官局進行動態增強。啟用後，將在日元周圍形成一股強效的「五方財源定向吸引渦流」，打通金生水、水生木的求財管道。動態轉化外界壓力（七殺）為商業合作機會（傷官合殺），在出差奔波或變動（驛馬逢沖）中實現財源滾滾、日進斗金。"
+    },
+    {
         id: "AMULET_PIANOFORTE_SOUL",
         name: "Pianoforte 心神和弦淨化補丁",
         category: "cache",

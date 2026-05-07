@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cyber-daoist-cache-v3';
+const CACHE_NAME = 'cyber-daoist-cache-v4';
 const ASSETS = [
     './',
     './index.html',
@@ -15,10 +15,12 @@ const ASSETS = [
     './assets/amulet/pianoforte.webp',
     './assets/amulet/sakura.webp',
     './assets/amulet/Zhijie.webp',
+    './assets/amulet/kylerich.webp',
     './assets/markdown/financial.md',
     './assets/markdown/pianoforte.md',
     './assets/markdown/sakura.md',
     './assets/markdown/Zhijie.md',
+    './assets/markdown/kylerich.md',
     './assets/audio/golden-light.mp3',
     './assets/audio/La_Ley_de_Shilin.mp3'
 ];
