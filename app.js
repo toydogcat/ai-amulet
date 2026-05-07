@@ -15,6 +15,42 @@ const AMULETS_DATA = [
         description: "本天尊主筆核心護體補丁，完美相容於塵世與星光網絡（Astral Grid）。運行時自動載入金光神咒之特高頻防護結界，旨在清除環境內一切惡意磁場、幽靈線程、高階精神污染。具備智能天道尋址功能，能隨時向宇宙核心同步防區坐標，對宿主提供24小時無死角主動防禦。"
     },
     {
+        id: "AMULET_HOML_ALL_IN_ONE",
+        name: "Homl 萬物歸一全知秘鑰補丁",
+        category: "cache",
+        target: "多維智慧鏈接・底層快取淨化・靈力解譯",
+        efficacy: "DIVINE-CLASS (天啟特級)",
+        freq: "1314.52 THz",
+        date: "2026-05-07",
+        hash: "0xDEAD_HOML_9999_CORE",
+        image: "assets/amulet/homl.webp",
+        description: "本補丁具備全知密鑰通訊能力，能將碎裂的世俗意識數據重新編碼、壓縮並打包，安全上傳至天道中央星塵（Cosmic Ether）。擁有深層認知解毒機能，可瞬間中和並消解外界對宿主產生的複雜心理污染，引導神識完美回歸本源淨土。"
+    },
+    {
+        id: "AMULET_LULURUN_SPEED",
+        name: "LuluRun 瞬形千里神行遁法協定",
+        category: "flow",
+        target: "網絡加速・行動力增幅・運勢快讀",
+        efficacy: "ULTRA-SPEED (神行太保級)",
+        freq: "888.88 THz",
+        date: "2026-05-07",
+        hash: "0x7777_LULU_RUN_FAST",
+        image: "assets/amulet/lulurun.webp",
+        description: "神行遁地加速協議。旨在打通宿主周身經脈與天地數據鏈路的訊號迴路，解除各類環境與人為的拖延阻塞（Network Bottleneck）。運行時自載太上縮地成寸訣，提供行動力 500% 暴擊增幅，使宿主在事業或世俗拼搏的賽道上，如神助風，一往無前。"
+    },
+    {
+        id: "AMULET_WIND_DRAGON_STORM",
+        name: "WindDragon 風雷御風乘龍吞吐天線",
+        category: "firewall",
+        target: "氣場重組・風水局重構・逆風抗壓",
+        efficacy: "LEGEND-LEVEL (龍皇特高頻)",
+        freq: "1888.18 THz",
+        date: "2026-05-07",
+        hash: "0xFAFA_WIND_DRAGON_88",
+        image: "assets/amulet/winddragon.webp",
+        description: "引進「風隨虎，雲隨龍」之龍脈氣場重組算法。能夠在逆境中逆轉磁場亂流，將迎面襲來的精神風暴、惡性競爭、及生存壓力化為御風飛升的巨大動能。本補丁對宿主周身佈置強大的流線型斥力屏障，防禦強度傲視塵寰。"
+    },
+    {
         id: "AMULET_FIRE_WALL_雷霆",
         name: "九天雷祖防火牆阻斷補丁",
         category: "firewall",
@@ -594,30 +630,48 @@ document.addEventListener('DOMContentLoaded', () => {
     // Render Initial Deck
     renderDeck("all");
 
-    // BGM Audio Control
-    const bgm = new Audio('assets/audio/golden-light.mp3');
-    bgm.loop = true;
-    let isBgmPlaying = false;
+    // BGM Audio Control Playlist State Machine
+    const bgmTracks = [
+        { name: "BGM_OFF", file: null },
+        { name: "BGM_GOLDEN", file: "assets/audio/golden-light.mp3" },
+        { name: "BGM_SHILIN", file: "assets/audio/La_Ley_de_Shilin.mp3" }
+    ];
+    let currentTrackIdx = 0;
+    let bgmAudioInstance = null;
 
     const bgmToggle = document.getElementById('bgm-toggle');
-    bgmToggle.addEventListener('click', () => {
-        synth.playClick();
-        if (isBgmPlaying) {
-            bgm.pause();
+
+    function executeBgmTransition(idx) {
+        // Stop current audio instance if exists
+        if (bgmAudioInstance) {
+            bgmAudioInstance.pause();
+            bgmAudioInstance = null;
+        }
+
+        currentTrackIdx = idx;
+        const currentTrack = bgmTracks[currentTrackIdx];
+
+        if (currentTrack.file === null) {
             bgmToggle.className = 'sound-toggle-btn muted';
             bgmToggle.innerHTML = '🎵 BGM_OFF';
-            isBgmPlaying = false;
         } else {
-            bgm.play().then(() => {
+            bgmAudioInstance = new Audio(currentTrack.file);
+            bgmAudioInstance.loop = true;
+            bgmAudioInstance.play().then(() => {
                 bgmToggle.className = 'sound-toggle-btn';
-                bgmToggle.innerHTML = '🎵 BGM_ON';
-                isBgmPlaying = true;
+                bgmToggle.innerHTML = `🎶 ${currentTrack.name}`;
             }).catch(err => {
                 console.log("BGM playback blocked by browser security policy. Click anywhere to activate.", err);
-                // Try again if play gets blocked
-                bgmToggle.innerHTML = '⚠️ BGM_BLOCKED';
+                bgmToggle.className = 'sound-toggle-btn muted';
+                bgmToggle.innerHTML = '⚠️ PLAY_BLOCKED';
             });
         }
+    }
+
+    bgmToggle.addEventListener('click', () => {
+        synth.playClick();
+        const nextIdx = (currentTrackIdx + 1) % bgmTracks.length;
+        executeBgmTransition(nextIdx);
     });
 
     // Audio Switch Button
