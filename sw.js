@@ -1,4 +1,4 @@
-const CACHE_NAME = 'cyber-daoist-cache-v1';
+const CACHE_NAME = 'cyber-daoist-cache-v2';
 const ASSETS = [
     './',
     './index.html',
@@ -7,10 +7,12 @@ const ASSETS = [
     './manifest.json',
     './assets/icon-192.png',
     './assets/icon-512.png',
-    './assets/amulet/toby.webp',
+    './assets/amulet/tobywang.webp',
     './assets/amulet/homl.webp',
     './assets/amulet/lulurun.webp',
     './assets/amulet/winddragon.webp',
+    './assets/amulet/financial.webp',
+    './assets/markdown/financial.md',
     './assets/audio/golden-light.mp3',
     './assets/audio/La_Ley_de_Shilin.mp3'
 ];
