@@ -21,7 +21,7 @@
    - 「靈能補丁參數 (PARAMETERS)」表格會同步解析出該符咒的專屬特徵：`PATCH_ID`、`TARGET_DOMAIN`、`EFFICACY_RATING`、`RUNIC_HASH`。
 
 5. **萬用備份程序 (Procedural Fallback Drawing)**
-   - 除了首張展示的主角 **TobyWang 天尊護體核心補丁 (TobyWang_20260507.png)** 外，其餘符咒卡片皆由 JavaScript 根據類別（防禦、招財、靜心）**在 Canvas 上自動進行幾何符文演算繪製**。
+   - 除了首張展示的主角 **TobyWang 天尊護體核心補丁** 外，其餘符咒卡片皆由 JavaScript 根據類別（防禦、招財、靜心）**在 Canvas 上自動進行幾何符文演算繪製**。
    - 若任何圖片載入失敗，系統會自動無縫切換至該動態繪圖備份，確保介面永遠精緻。
 
 ---
