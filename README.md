@@ -1,2 +1,29 @@
-# ai-amulet
-The amulet.
+# 賽博修仙・符咒編譯終端 (Cyber-Daoist Talisman Terminal)
+
+本專案是一個專為展示極度狹長（高長寬比）道教符咒而設計的**賽博修仙風 (Tech-Daoist / Cyberpunk)** 網頁終端。將古老的符咒視為「對宇宙下達的 Command Line」或「系統補丁 (System Patch)」，並完美融合了現代終端機介面。
+
+![終端介面預覽](.system_generated/click_feedback/click_feedback_1778131210741.png)
+
+## 🌌 核心特色與技術亮點
+
+1. **無損高長寬比展示 (Horizontal Scroll-Snap)**
+   - 傳統網格極易裁剪符咒的頭尾。本專案使用**橫向彈性滾動甲板 (Horizontal Scroll Deck)**，使每一張符咒皆能以完整的 100% 原始比例站立。
+   - 搭載自適應滾動錨定 (`scroll-snap`)、發光霓虹框線、以及在符咒上持續循環的**高能雷射掃描線 (Laser Scanner)**。
+
+2. **太極八卦代碼雨 (Matrix Runic Rain)**
+   - 採用高效能 HTML5 Canvas 渲染。將黑客帝國經典的代碼雨，替換為**易經八卦符號（乾、坤、坎、離等）、道教密文（勅、令、鎮、罡）與二進位制代碼**，營召深邃神祕的氛圍。
+
+3. **網頁音效合成器 (Web Audio API Synthesizer)**
+   - 整合輕量級音效引擎，點擊卡片與編譯成功時會即時合成發出**復古 8-bit 電子嗶嗶聲與升調和弦**。無需載入任何外部音頻檔案，載入速度極快。
+
+4. **動態反編譯控制台 (Simulated Compiler Console)**
+   - 點擊任一符咒，右側「編譯核心」會以自適應打字速度，一行行模擬反編譯、載入靈力頻率、連線天道伺服器的日誌動畫。
+   - 「靈能補丁參數 (PARAMETERS)」表格會同步解析出該符咒的專屬特徵：`PATCH_ID`、`TARGET_DOMAIN`、`EFFICACY_RATING`、`RUNIC_HASH`。
+
+5. **萬用備份程序 (Procedural Fallback Drawing)**
+   - 除了首張展示的主角 **TobyWang 天尊護體核心補丁 (TobyWang_20260507.png)** 外，其餘符咒卡片皆由 JavaScript 根據類別（防禦、招財、靜心）**在 Canvas 上自動進行幾何符文演算繪製**。
+   - 若任何圖片載入失敗，系統會自動無縫切換至該動態繪圖備份，確保介面永遠精緻。
+
+---
+
+*天道無親，常與善人。願此賽博符咒終端保您代碼無 Bug，運行不宕機！* ☯

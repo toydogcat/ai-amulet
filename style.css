@@ -1,0 +1,676 @@
+:root {
+    --bg-primary: #08090c;
+    --bg-secondary: #0f1015;
+    --bg-tertiary: #161822;
+    
+    --neon-red: #ff2e54;
+    --neon-amber: #ffb000;
+    --neon-green: #00ff66;
+    --neon-blue: #00f0ff;
+    
+    --text-primary: #eceff4;
+    --text-secondary: #8892b0;
+    --text-dim: #4c566a;
+    
+    --border-color: #2e3440;
+    --glow-red: 0 0 10px rgba(255, 46, 84, 0.5), 0 0 20px rgba(255, 46, 84, 0.2);
+    --glow-amber: 0 0 10px rgba(255, 176, 0, 0.5), 0 0 20px rgba(255, 176, 0, 0.2);
+    --glow-green: 0 0 10px rgba(0, 255, 102, 0.5), 0 0 20px rgba(0, 255, 102, 0.2);
+    
+    --font-sans: 'Noto Sans TC', sans-serif;
+    --font-mono: 'Share Tech Mono', monospace;
+    --font-display: 'Orbitron', sans-serif;
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    font-family: var(--font-sans);
+    overflow: hidden;
+    height: 100vh;
+    width: 100vw;
+    position: relative;
+}
+
+/* CRT Screen Effects */
+.crt-overlay {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, rgba(16, 20, 30, 0) 60%, rgba(0, 0, 0, 0.6) 100%);
+    pointer-events: none;
+    z-index: 9999;
+}
+
+.scanlines {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        rgba(18, 16, 16, 0) 50%, 
+        rgba(0, 0, 0, 0.25) 50%
+    );
+    background-size: 100% 4px;
+    pointer-events: none;
+    z-index: 9998;
+}
+
+.vignette {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    box-shadow: inset 0 0 100px rgba(0,0,0,0.8);
+    pointer-events: none;
+    z-index: 9997;
+}
+
+/* Matrix Background */
+#matrix-canvas {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0.15;
+    z-index: 0;
+    pointer-events: none;
+}
+
+/* Terminal Framework Layout */
+.terminal-container {
+    position: relative;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    height: 100vh;
+    padding: 15px;
+}
+
+/* Header Styling */
+.terminal-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 2px solid var(--neon-amber);
+    box-shadow: 0 0 15px rgba(255, 176, 0, 0.2);
+    padding: 10px 15px;
+    background-color: rgba(15, 16, 21, 0.85);
+    backdrop-filter: blur(5px);
+    font-family: var(--font-display);
+    margin-bottom: 15px;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.system-tag {
+    color: var(--neon-green);
+    font-size: 0.8rem;
+    font-weight: bold;
+    text-shadow: var(--glow-green);
+    border: 1px solid var(--neon-green);
+    padding: 2px 6px;
+    border-radius: 3px;
+    animation: blink 2s infinite;
+}
+
+.glitch-title {
+    font-size: 1.2rem;
+    font-weight: 900;
+    color: var(--neon-amber);
+    text-shadow: var(--glow-amber);
+    letter-spacing: 1px;
+    position: relative;
+}
+
+.header-center .spiritual-telemetry {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+}
+
+.telemetry-divider {
+    color: var(--text-dim);
+    margin: 0 10px;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.system-time {
+    font-family: var(--font-mono);
+    font-size: 1.1rem;
+    color: var(--neon-amber);
+    text-shadow: var(--glow-amber);
+}
+
+.sound-toggle-btn {
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    background: transparent;
+    border: 1px solid var(--text-secondary);
+    color: var(--text-secondary);
+    padding: 4px 10px;
+    cursor: pointer;
+    border-radius: 4px;
+    transition: all 0.3s;
+    user-select: none;
+}
+
+.sound-toggle-btn.muted {
+    border-color: var(--text-dim);
+    color: var(--text-dim);
+}
+
+.sound-toggle-btn:hover {
+    background-color: rgba(255, 255, 255, 0.05);
+    color: var(--text-primary);
+}
+
+/* Three Pane Layout Split */
+.terminal-layout {
+    display: grid;
+    grid-template-columns: 320px 1fr 360px;
+    gap: 15px;
+    flex-grow: 1;
+    height: calc(100vh - 85px);
+    overflow: hidden;
+}
+
+/* Sidebar Columns */
+.sidebar-left, .sidebar-right {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    height: 100%;
+    overflow: hidden;
+}
+
+/* Terminal Card UI Component */
+.terminal-card {
+    background-color: rgba(15, 16, 21, 0.85);
+    border: 1px solid var(--border-color);
+    border-radius: 4px;
+    backdrop-filter: blur(5px);
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    transition: border-color 0.3s, box-shadow 0.3s;
+}
+
+.terminal-card:hover {
+    border-color: rgba(255, 176, 0, 0.4);
+}
+
+.terminal-card .card-header {
+    background-color: rgba(22, 24, 34, 0.9);
+    border-bottom: 1px solid var(--border-color);
+    padding: 8px 12px;
+    font-family: var(--font-display);
+    font-size: 0.85rem;
+    font-weight: 600;
+    letter-spacing: 0.5px;
+    color: var(--neon-amber);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.terminal-card .card-body {
+    padding: 15px;
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+/* Left Sidebar specifics */
+.system-monitor .card-body {
+    padding: 12px;
+}
+
+.status-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.status-item {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+    padding-bottom: 6px;
+}
+
+.status-item .label {
+    font-size: 0.75rem;
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+}
+
+.status-item .value {
+    font-size: 0.8rem;
+    font-family: var(--font-mono);
+    font-weight: bold;
+    color: var(--neon-amber);
+}
+
+.status-item .value.state-ok {
+    color: var(--neon-green);
+    text-shadow: var(--glow-green);
+}
+
+/* Filter buttons */
+.filter-buttons {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.filter-btn {
+    background: rgba(22, 24, 34, 0.7);
+    border: 1px solid var(--border-color);
+    color: var(--text-secondary);
+    padding: 10px 12px;
+    border-radius: 4px;
+    font-family: var(--font-mono);
+    font-size: 0.85rem;
+    text-align: left;
+    cursor: pointer;
+    transition: all 0.3s;
+    display: flex;
+    align-items: center;
+}
+
+.filter-btn .btn-tag {
+    color: var(--neon-amber);
+    margin-right: 8px;
+    font-weight: bold;
+}
+
+.filter-btn:hover {
+    border-color: var(--neon-amber);
+    color: var(--text-primary);
+    box-shadow: rgba(255, 176, 0, 0.1) 0 0 8px;
+    transform: translateX(4px);
+}
+
+.filter-btn.active {
+    border-color: var(--neon-red);
+    color: var(--text-primary);
+    background-color: rgba(255, 46, 84, 0.1);
+    box-shadow: rgba(255, 46, 84, 0.15) 0 0 10px;
+}
+
+.filter-btn.active .btn-tag {
+    color: var(--neon-red);
+}
+
+/* System Console Log container */
+.console-log-container {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--neon-green);
+    line-height: 1.4;
+    max-height: 180px;
+}
+
+.log-line {
+    margin-bottom: 4px;
+    word-break: break-all;
+}
+
+/* Center Showcase and Deck */
+.center-showcase {
+    height: 100%;
+    overflow: hidden;
+    position: relative;
+    border: 1px solid rgba(255, 255, 255, 0.05);
+    border-radius: 4px;
+    background-color: rgba(10, 11, 15, 0.6);
+    display: flex;
+    align-items: center;
+}
+
+.deck-container {
+    display: flex;
+    gap: 30px;
+    overflow-x: auto;
+    overflow-y: hidden;
+    padding: 40px;
+    height: 100%;
+    width: 100%;
+    align-items: center;
+    scroll-snap-type: x mandatory;
+    scroll-behavior: smooth;
+}
+
+/* Custom Scrollbar */
+.deck-container::-webkit-scrollbar {
+    height: 8px;
+}
+
+.deck-container::-webkit-scrollbar-track {
+    background: rgba(22, 24, 34, 0.5);
+}
+
+.deck-container::-webkit-scrollbar-thumb {
+    background: var(--neon-amber);
+    border-radius: 4px;
+}
+
+.deck-container::-webkit-scrollbar-thumb:hover {
+    background: var(--neon-red);
+}
+
+/* Talisman Card Element */
+.talisman-card-element {
+    flex-shrink: 0;
+    width: 250px;
+    height: 85%;
+    background-color: rgba(15, 16, 21, 0.9);
+    border: 2px solid var(--border-color);
+    border-radius: 8px;
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    scroll-snap-align: center;
+    cursor: pointer;
+    transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+    position: relative;
+}
+
+.talisman-card-element::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: radial-gradient(circle, transparent 60%, rgba(255, 46, 84, 0.08) 100%);
+    pointer-events: none;
+    z-index: 2;
+    transition: opacity 0.3s;
+    opacity: 0;
+}
+
+.talisman-card-element:hover {
+    border-color: var(--neon-red);
+    box-shadow: 0 0 25px rgba(255, 46, 84, 0.35);
+    transform: translateY(-8px);
+}
+
+.talisman-card-element:hover::before {
+    opacity: 1;
+}
+
+.talisman-card-element.active-card {
+    border-color: var(--neon-amber);
+    box-shadow: 0 0 25px rgba(255, 176, 0, 0.35);
+}
+
+/* Card Header */
+.card-el-header {
+    padding: 8px 12px;
+    background-color: rgba(22, 24, 34, 0.9);
+    border-bottom: 1px solid var(--border-color);
+    display: flex;
+    justify-content: space-between;
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+    color: var(--text-secondary);
+}
+
+.card-el-header .id {
+    color: var(--neon-amber);
+    font-weight: bold;
+}
+
+/* Image Scanner Container */
+.talisman-img-container {
+    flex-grow: 1;
+    position: relative;
+    overflow: hidden;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #0d0e12;
+    padding: 15px;
+}
+
+/* The actual image */
+.talisman-image {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    image-rendering: auto;
+    transition: transform 0.4s;
+    z-index: 1;
+}
+
+.talisman-canvas-mock {
+    max-height: 100%;
+    max-width: 100%;
+    object-fit: contain;
+    z-index: 1;
+}
+
+.talisman-card-element:hover .talisman-image {
+    transform: scale(1.05);
+    animation: jitter 0.15s infinite alternate;
+}
+
+/* Scanning Laser Line */
+.laser-scanner {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, transparent, var(--neon-red), transparent);
+    box-shadow: 0 0 8px var(--neon-red);
+    z-index: 5;
+    pointer-events: none;
+    animation: laserScan 4s ease-in-out infinite;
+    opacity: 0.7;
+}
+
+.talisman-card-element:hover .laser-scanner {
+    background: linear-gradient(90deg, transparent, var(--neon-blue), transparent);
+    box-shadow: 0 0 10px var(--neon-blue);
+    animation: laserScan 1.5s linear infinite;
+}
+
+/* Card Footer */
+.card-el-footer {
+    padding: 8px 12px;
+    background-color: rgba(22, 24, 34, 0.9);
+    border-top: 1px solid var(--border-color);
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+}
+
+.footer-row {
+    display: flex;
+    justify-content: space-between;
+    font-size: 0.7rem;
+    font-family: var(--font-mono);
+}
+
+.footer-row .label {
+    color: var(--text-secondary);
+}
+
+.footer-row .val {
+    color: var(--text-primary);
+}
+
+/* Right Sidebar Compiler screens */
+.compiler-console {
+    flex-grow: 1.2;
+}
+
+.compiler-screen {
+    font-family: var(--font-mono);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    background-color: #06070a;
+    border: 1px solid rgba(255, 176, 0, 0.15);
+    border-radius: 4px;
+    color: var(--neon-amber);
+    padding: 15px;
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+    overflow-y: auto;
+}
+
+.compiler-logo-anim {
+    text-align: center;
+    color: var(--neon-amber);
+}
+
+.ascii-logo {
+    font-size: 0.75rem;
+    line-height: 1.2;
+    display: inline-block;
+}
+
+.compiler-instructions {
+    color: var(--text-secondary);
+    font-size: 0.8rem;
+    border-left: 2px solid var(--neon-amber);
+    padding-left: 10px;
+}
+
+/* Compilation step lines animation */
+.compile-line {
+    border-bottom: 1px dashed rgba(255, 176, 0, 0.1);
+    padding-bottom: 4px;
+    animation: fadeIn 0.3s forwards;
+}
+
+.compile-line.success {
+    color: var(--neon-green);
+}
+
+.compile-line.loading::after {
+    content: '...';
+    animation: dot-blink 1s infinite steps(4);
+}
+
+/* Metadata console screen */
+.metadata-console {
+    flex-grow: 0.8;
+}
+
+.metadata-screen {
+    padding: 10px;
+}
+
+.metadata-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+.metadata-table td {
+    padding: 8px;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+    font-size: 0.8rem;
+}
+
+.meta-label {
+    font-family: var(--font-mono);
+    color: var(--text-secondary);
+    width: 40%;
+}
+
+.meta-value {
+    color: var(--neon-green);
+    font-weight: bold;
+    text-align: right;
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+    font-size: 0.75rem;
+}
+
+/* Animations declarations */
+@keyframes laserScan {
+    0% {
+        top: 0%;
+    }
+    50% {
+        top: 100%;
+    }
+    100% {
+        top: 0%;
+    }
+}
+
+@keyframes blink {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.3; }
+}
+
+@keyframes dot-blink {
+    0% { content: ''; }
+    25% { content: '.'; }
+    50% { content: '..'; }
+    75% { content: '...'; }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(4px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes jitter {
+    0% { transform: scale(1.05) translate(0); }
+    20% { transform: scale(1.05) translate(-1px, 1px); }
+    40% { transform: scale(1.05) translate(-1px, -1px); }
+    60% { transform: scale(1.05) translate(1px, 1px); }
+    80% { transform: scale(1.05) translate(1px, -1px); }
+    100% { transform: scale(1.05) translate(0); }
+}
+
+/* Responsive Scaling down for smaller devices */
+@media (max-width: 1200px) {
+    .terminal-layout {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto auto 1fr;
+        height: auto;
+        overflow-y: auto;
+    }
+    
+    .sidebar-left, .sidebar-right {
+        height: auto;
+    }
+    
+    .center-showcase {
+        height: 600px;
+    }
+    
+    body {
+        overflow-y: auto;
+    }
+}

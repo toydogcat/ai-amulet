@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>賽博修仙・符咒編譯終端 | Cyber-Daoist Amulet Compiler</title>
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+TC:wght@300;400;700;900&family=Orbitron:wght@400;600;900&family=Share+Tech+Mono&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- CRT Overlay Effects -->
+    <div class="crt-overlay"></div>
+    <div class="scanlines"></div>
+    <div class="vignette"></div>
+
+    <!-- Matrix Background Canvas -->
+    <canvas id="matrix-canvas"></canvas>
+
+    <!-- Main Terminal Container -->
+    <div class="terminal-container">
+        <!-- Terminal Header -->
+        <header class="terminal-header">
+            <div class="header-left">
+                <span class="system-tag">[SYS_ACTIVE]</span>
+                <span class="glitch-title" data-text="DAOIST_COMPILER_v8.8.8">DAOIST_COMPILER_v8.8.8</span>
+            </div>
+            <div class="header-center">
+                <div class="spiritual-telemetry">
+                    <span>SPIRITUAL_FREQ: <span id="telemetry-freq">104.82 THz</span></span>
+                    <span class="telemetry-divider">|</span>
+                    <span>SOUL_BANDWIDTH: <span id="telemetry-bw">92.4%</span></span>
+                    <span class="telemetry-divider">|</span>
+                    <span>SECTOR: <span id="telemetry-sector">ASTRAL-09</span></span>
+                </div>
+            </div>
+            <div class="header-right">
+                <div class="system-time" id="digital-clock">00:00:00</div>
+                <div class="sound-toggle-btn" id="bgm-toggle" title="切換背景音樂" style="margin-right: 10px;">
+                    <span class="sound-icon">🎵</span> BGM_OFF
+                </div>
+                <div class="sound-toggle-btn" id="sound-toggle" title="切換系統音效">
+                    <span class="sound-icon">🔊</span> AUDIO_ON
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Layout Split -->
+        <main class="terminal-layout">
+            <!-- Left Sidebar: System Monitor & Filters -->
+            <aside class="sidebar-left">
+                <div class="terminal-card system-monitor">
+                    <div class="card-header">
+                        <span class="header-icon">❖</span> 系統狀態監視器
+                    </div>
+                    <div class="card-body">
+                        <div class="status-grid">
+                            <div class="status-item">
+                                <span class="label">五行循環 (ELEMENTS)</span>
+                                <span class="value state-ok">CIRCULATING</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">靈氣壓力 (REIKI)</span>
+                                <span class="value" id="reiki-pressure">0.782 G-DAO</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">防禦防火牆 (FIREWALL)</span>
+                                <span class="value state-ok">SAFE (99.9%)</span>
+                            </div>
+                            <div class="status-item">
+                                <span class="label">天道線路 (TAO_LINK)</span>
+                                <span class="value state-ok">SYNCED</span>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-card filters-section">
+                    <div class="card-header">
+                        <span class="header-icon">⚡</span> 靈力補丁類別過濾
+                    </div>
+                    <div class="card-body">
+                        <div class="filter-buttons">
+                            <button class="filter-btn active" data-filter="all">
+                                <span class="btn-tag">[ALL]</span> 顯示全部補丁
+                            </button>
+                            <button class="filter-btn" data-filter="firewall">
+                                <span class="btn-tag">[FIREWALL]</span> 驅邪辟邪
+                            </button>
+                            <button class="filter-btn" data-filter="daemon">
+                                <span class="btn-tag">[DAEMON]</span> 鎮宅保平安
+                            </button>
+                            <button class="filter-btn" data-filter="flow">
+                                <span class="btn-tag">[FLOW]</span> 招財進寶
+                            </button>
+                            <button class="filter-btn" data-filter="cache">
+                                <span class="btn-tag">[CACHE]</span> 淨心提神
+                            </button>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-card system-logs">
+                    <div class="card-header">
+                        <span class="header-icon">⌨</span> 系統事件紀錄
+                    </div>
+                    <div class="card-body console-log-container" id="system-event-logs">
+                        <div class="log-line">[13:17:19] INITIALIZING ASTRAL LINK...</div>
+                        <div class="log-line">[13:17:20] ESTABLISHING FIVE-ELEMENT LOOP... DONE.</div>
+                        <div class="log-line">[13:17:20] TALISMAN SYSTEM PATCHER V8.8 READY.</div>
+                    </div>
+                </div>
+            </aside>
+
+            <!-- Center Showcase Area: Horizontal Scrolling Talisman Deck -->
+            <section class="center-showcase">
+                <div class="deck-container" id="talisman-deck">
+                    <!-- Cards will be dynamically injected by app.js -->
+                </div>
+            </section>
+
+            <!-- Right Sidebar: Compiler Console & Active Talisman Metadata -->
+            <aside class="sidebar-right">
+                <div class="terminal-card compiler-console">
+                    <div class="card-header">
+                        <span class="header-icon">⚙</span> 符咒編譯核心 (COMPILER)
+                    </div>
+                    <div class="card-body compiler-screen" id="compiler-screen">
+                        <div class="compiler-logo-anim">
+                            <pre class="ascii-logo">
+  ⚡  ☯  ⚡
+ █ █ █ █ █
+ █ ▄ █ ▄ █
+ █ █ █ █ █
+  DECOMPILING
+                            </pre>
+                        </div>
+                        <div class="compiler-instructions">
+                            請在中央區域選擇或點擊一張「符咒補丁」，系統將自動讀取靈力頻率，並在下方編譯出相應的符咒參數與宇宙指令代碼。
+                        </div>
+                    </div>
+                </div>
+
+                <div class="terminal-card metadata-console">
+                    <div class="card-header">
+                        <span class="header-icon">📁</span> 靈能補丁參數 (PARAMETERS)
+                    </div>
+                    <div class="card-body metadata-screen" id="metadata-screen">
+                        <table class="metadata-table">
+                            <tbody>
+                                <tr>
+                                    <td class="meta-label">PATCH_ID:</td>
+                                    <td class="meta-value" id="meta-id">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">TARGET_DOMAIN:</td>
+                                    <td class="meta-value" id="meta-target">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">ENERGY_FREQ:</td>
+                                    <td class="meta-value" id="meta-freq">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">EFFICACY_RATING:</td>
+                                    <td class="meta-value" id="meta-efficacy">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">COMPILED_DATE:</td>
+                                    <td class="meta-value" id="meta-date">N/A</td>
+                                </tr>
+                                <tr>
+                                    <td class="meta-label">RUNIC_HASH:</td>
+                                    <td class="meta-value font-mono" id="meta-hash">N/A</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </aside>
+        </main>
+    </div>
+
+    <script src="app.js"></script>
+</body>
+</html>
