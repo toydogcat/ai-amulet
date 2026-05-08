@@ -3,6 +3,48 @@
 // ==========================================
 const AMULETS_DATA = [
     {
+        id: "AMULET_PEISHAN_SHIELD",
+        name: "Peishan 庚金十靈禦魔金光補丁",
+        category: "firewall",
+        target: "十靈護體・食傷洩秀・偏財吸納・化殺為用",
+        efficacy: "EXCLUSIVE-CLASS (金光特級)",
+        freq: "1680.10 THz",
+        date: "2026-05-09",
+        hash: "0x8888_PEISHAN_SHIELD",
+        image: "assets/amulet/peishan.webp",
+        markdownPath: "assets/markdown/peishan.md",
+        elements: { metal: 26, wood: 10, water: 21, fire: 29, earth: 14 },
+        description: "庚金珠玉生於子月，透天干雙丙火七殺夾克，原局自帶「十靈日」神煞（具備極高的直覺與靈性靈感）。本補丁以偏印「戊戌」厚土與比劫庚金提供全方位能量增生，調用太極十靈之高頻波動，在宿主周圍編譯出一層帶有流光的防禦力場，主動化殺為用、驅邪避災。"
+    },
+    {
+        id: "AMULET_REASONABLE_STORM",
+        name: "Reasonable 狂飆神行五路招財補丁",
+        category: "flow",
+        target: "甲木極化・食傷洩秀・化刃為用・春深財開",
+        efficacy: "LEGEND-LEVEL (金仙萬能招財頻率)",
+        freq: "1888.88 THz",
+        date: "2026-05-09",
+        hash: "0x1688_REASONABLE_FLOW",
+        image: "assets/amulet/reasonable.webp",
+        markdownPath: "assets/markdown/reasonable.md",
+        elements: { metal: 0, wood: 47, water: 24, fire: 24, earth: 6 },
+        description: "甲木生於卯月（帝旺羊刃），木氣極強（47%），極具開拓意志。然而原局有午子相沖、午卯相破，內部氣流碰撞劇烈。本補丁旨在「化刃為用」，利用 24% 的火食傷強效洩秀生財，結合 24% 的水正印滋養神識。將劇烈的碰撞亂流重新定向為強大的商業直覺與五路招財吸引渦流，帶來神行般的高速執行力。"
+    },
+    {
+        id: "AMULET_XINYI_FLOW",
+        name: "Xinyi 天河引靈財星合縱補丁",
+        category: "flow",
+        target: "壬丁合財・財星引領・氣場重組・合縱開拓",
+        efficacy: "EXCLUSIVE-CLASS (玄水特級)",
+        freq: "1520.20 THz",
+        date: "2026-05-09",
+        hash: "0x5200_XINYI_FLOW_CORE",
+        image: "assets/amulet/xinyi.webp",
+        markdownPath: "assets/markdown/xinyi.md",
+        elements: { metal: 5, wood: 23, water: 20, fire: 28, earth: 25 },
+        description: "日元壬水生於戌月七殺旺地，但天干有「丁壬相合」（財來合我），且地支午未六合化火、戌午半合火局，火財與土殺高溫籠罩。本補丁藉由合縱協定引導「丁壬相合」之金錢與人緣吸引力，轉化高熱財星為溫和能量流，同時以子水刃星與天河水提供底層冷卻，使宿主在變動中游刃有餘、財庫廣進。"
+    },
+    {
         id: "AMULET_TOBY_20260507",
         name: "TobyWang 天尊護體核心補丁",
         category: "daemon",
