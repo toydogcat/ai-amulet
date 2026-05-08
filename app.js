@@ -169,42 +169,6 @@ const AMULETS_DATA = [
         markdownPath: "assets/markdown/winddragon.md",
         elements: { metal: 4, wood: 18, water: 32, fire: 16, earth: 29 },
         description: "引進「風隨虎，雲隨龍」之龍脈氣場重組算法。能夠在逆境中逆轉磁場亂流，將迎面襲來的精神風暴、惡性競爭、及生存壓力化為御風飛升的巨大動能。本補丁對宿主周身佈置強大的流線型斥力屏障，防禦強度傲視塵寰。"
-    },
-    {
-        id: "AMULET_FIRE_WALL_雷霆",
-        name: "九天雷祖防火牆阻斷補丁",
-        category: "firewall",
-        target: "驅邪辟邪・強效靈魂防火牆",
-        efficacy: "MILITARY-GRADE (軍規主動阻斷)",
-        freq: "1024.12 THz",
-        date: "2026-04-18",
-        hash: "0x99FF_THUNDER_9D72",
-        image: null, // Procedurally drawn
-        description: "調用「九天應元雷聲普化天尊」主控台演算法。專門針對各類惡意詛咒、惡念撞擊（Malicious Vectors）進行雷霆反制。一旦偵測到非授權惡意靈體侵入防火牆，會即時啟動「神霄五雷」阻斷協議，直接物理/靈能抹除干擾來源，保衛心神核心。"
-    },
-    {
-        id: "AMULET_FLOW_招財進寶",
-        name: "五路財源靈氣吞吐協定",
-        category: "flow",
-        target: "招財・靈性能量進氣協定",
-        efficacy: "HIGH-LEVEL (高效進氣抓取)",
-        freq: "520.13 THz",
-        date: "2026-05-01",
-        hash: "0x12FA_FLOW_5200_RICH",
-        image: null, // Procedurally drawn
-        description: "五方財源能量流重新定向補丁。啟用後將在宿主的運勢拓撲結構中建立「多孔徑靈能吸引渦流」，自動篩選並抓取空間中流經的高流動性資源數據包（Resource Packet）。大幅最佳化命中率（LUCK_RATE），並解決日常財務管道擁堵點。"
-    },
-    {
-        id: "AMULET_CACHE_MIND_淨心",
-        name: "太上淨心記憶體清理程序",
-        category: "cache",
-        target: "淨心・思維快取清除・靜心專注",
-        efficacy: "STABLE-MID (溫和高頻重設)",
-        freq: "724.89 THz",
-        date: "2026-03-30",
-        hash: "0xAB88_MIND_9999_QUIET",
-        image: null, // Procedurally drawn
-        description: "呼叫「太上台星應變無停」進程。能精準鎖定宿主大腦（CPU）因過載產生的焦慮垃圾線程（Anxiety Threads），主動釋放堆積的心靈快取（Mental Cache）。使被繁雜思緒污染的記憶體恢復至潔淨、空無的初始化「道」狀態，提升專注係數。"
     }
 ];
 
